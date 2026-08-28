@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Invitații Nuntă & Confirmări</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<style>
+:root{--bg:#fffaf7;--card:#fff;--text:#2f2a28;--muted:#7a6f6a;--accent:#b76e79;--accent2:#8d4f5b;--ok:#2f855a;--no:#c53030;--line:#eaded8}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,#fff8f4,#f8eef2);color:var(--text)}
+header{padding:28px 18px;text-align:center;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}header h1{margin:0;font-size:clamp(28px,5vw,46px)}header p{margin:8px 0 0;color:var(--muted)}
+.wrap{max-width:1180px;margin:24px auto;padding:0 16px 60px}.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.tab{border:0;border-radius:999px;padding:11px 16px;background:#fff;color:var(--text);cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.05)}.tab.active{background:var(--accent);color:#fff}
+.panel{display:none}.panel.active{display:block}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 10px 30px rgba(72,42,35,.08)}h2{margin-top:0}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:560px){.row{grid-template-columns:1fr}}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 6px}input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}textarea{min-height:90px;resize:vertical}
+button.primary,.btn{border:0;border-radius:12px;padding:11px 15px;background:var(--accent);color:#fff;cursor:pointer;font-weight:700}.btn.secondary{background:#6b7280}.btn.ok{background:var(--ok)}.btn.no{background:var(--no)}.btn.whatsapp{background:#1f9d55}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.preview{min-height:560px;border-radius:24px;padding:34px;background:linear-gradient(160deg,#fff,#fff5f7);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}.invite-inner{max-width:600px;width:100%;position:relative;z-index:1}.invite-photo{width:150px;height:150px;object-fit:cover;border-radius:50%;border:5px solid rgba(255,255,255,.9);box-shadow:0 8px 24px rgba(0,0,0,.15);display:none;margin:0 auto 16px}.monogram{font-size:56px;color:var(--accent);font-family:Georgia,serif}.names{font-size:40px;font-family:Georgia,serif;margin:10px 0}.date{letter-spacing:.15em;color:var(--accent2);font-weight:700}.message{line-height:1.7}.venue{margin-top:16px;font-weight:700}.family{font-size:14px;line-height:1.6;margin-top:14px;color:var(--muted)}
+.preview.elegant{background:linear-gradient(160deg,#1f1f24,#3a3134);color:#fff}.preview.elegant .small,.preview.elegant .family{color:#ddd}.preview.elegant .monogram,.preview.elegant .date{color:#e5c07b}.preview.minimal{background:#fff}.preview.floral{background:radial-gradient(circle at 10% 15%,#fde2e8 0 9%,transparent 10%),radial-gradient(circle at 90% 85%,#e8f3e7 0 12%,transparent 13%),#fffaf7}
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:700px){.statgrid{grid-template-columns:repeat(2,1fr)}}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}.stat b{display:block;font-size:28px}.small{font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:12px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;background:#f3f4f6}.pill.ok{background:#def7e8;color:#17663f}.pill.no{background:#fde2e2;color:#8f1d1d}.pill.wait{background:#fff3cd;color:#7b5b00}
+.linkbox{display:flex;gap:8px}.linkbox input{font-size:12px}.notice{padding:12px;border-radius:12px;background:#fff6df;border:1px solid #f5df9d;color:#6b5310;margin-bottom:14px}.danger{color:#a00}.hidden{display:none}.qrbox{display:flex;justify-content:center;padding:12px;background:#fff;border-radius:16px;margin-top:12px}.mapframe{width:100%;height:280px;border:0;border-radius:16px;background:#f3f4f6}.rsvp-page{max-width:760px;margin:30px auto;padding:0 16px}.rsvp-hero{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 12px 30px rgba(0,0,0,.07)}
+@media print{header,.tabs,.card:first-child,.actions{display:none!important}.wrap{max-width:none;margin:0;padding:0}.grid{display:block}.preview{border:0;box-shadow:none;min-height:100vh}}
+</style>
+</head>
+<body>
+<header><h1>💍 Invitații Nuntă & Confirmări</h1><p>Creezi invitații personalizate și urmărești confirmările</p></header>
+<div id="app" class="wrap">
+  <div class="tabs">
+    <button class="tab active" data-tab="designer">Creează invitația</button>
+    <button class="tab" data-tab="guests">Invitați & linkuri</button>
+    <button class="tab" data-tab="responses">Confirmări</button>
+    <button class="tab" data-tab="settings">Setări online</button>
+  </div>
+
+  <section id="designer" class="panel active">
+    <div class="grid">
+      <div class="card">
+        <h2>Datele invitației</h2>
+        <div class="row"><div><label>Numele mirelui</label><input id="groom" value="Robert"></div><div><label>Numele miresei</label><input id="bride" value="Andreea"></div></div>
+        <div class="row"><div><label>Data nunții</label><input id="date" type="date"></div><div><label>Ora</label><input id="time" type="time" value="18:00"></div></div>
+        <label>Poza mirilor</label><input id="photo" type="file" accept="image/*"><div class="small">Poza este salvată local în browser.</div>
+        <div class="row"><div><label>Stil invitație</label><select id="theme"><option value="romantic">Romantic</option><option value="elegant">Elegant</option><option value="minimal">Minimal</option><option value="floral">Floral</option></select></div><div><label>Termen confirmare</label><input id="deadline" type="date"></div></div>
+        <label>Numele bisericii</label><input id="church" placeholder="Ex: Biserica Sfântul Nicolae">
+        <div class="row"><div><label>Ora cununiei religioase</label><input id="churchTime" type="time" value="16:00"></div><div><label>Adresa bisericii</label><input id="churchAddress" placeholder="Strada..., oraș..."></div></div>
+        <label>Locația / Salonul</label><input id="venue" placeholder="Ex: Salon Royal">
+        <label>Adresa</label><input id="address" placeholder="Strada..., oraș...">
+        <label>Link Google Maps</label><input id="mapUrl" placeholder="https://maps.google.com/...">
+        <label>Părinții mirelui</label><input id="groomParents" placeholder="Ex: Maria și Ion Ionescu">
+        <label>Părinții miresei</label><input id="brideParents" placeholder="Ex: Elena și Vasile Popescu">
+        <label>Nașii</label><input id="godparents" placeholder="Ex: Ana și Mihai Georgescu">
+        <label>Mesajul invitației</label><textarea id="message">Cu mare bucurie vă invităm să ne fiți alături în cea mai frumoasă zi din viața noastră. Vă așteptăm să sărbătorim împreună iubirea, familia și un nou început.</textarea>
+        <div class="actions"><button class="primary" id="saveInvite">Salvează invitația</button><button class="btn secondary" id="printInvite">Tipărește / PDF</button></div>
+      </div>
+      <div>
+        <div class="preview romantic" id="preview"><div class="invite-inner"><img id="pPhoto" class="invite-photo"><div class="monogram" id="pMono">R ♥ A</div><div class="small">VĂ INVITĂM LA NUNTA NOASTRĂ</div><div class="names" id="pNames">Robert & Andreea</div><div class="date" id="pDate">DATA NUNȚII</div><p class="message" id="pMessage"></p><div class="family" id="pFamily"></div><div class="venue" id="pVenue"></div><div class="small" id="pDeadline" style="margin-top:16px"></div></div></div>
+        <div class="card" style="margin-top:18px"><h2>Hartă locație</h2><iframe id="mapFrame" class="mapframe" loading="lazy"></iframe><div class="actions"><a id="openMap" class="btn secondary" target="_blank" rel="noopener">Deschide în Google Maps</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="guests" class="panel">
+    <div class="grid">
+      <div class="card">
+        <h2>Adaugă invitat</h2>
+        <label>Nume invitat / familie</label><input id="guestName" placeholder="Ex: Familia Popescu">
+        <div class="row"><div><label>Telefon</label><input id="guestPhone" placeholder="07..."></div><div><label>Email</label><input id="guestEmail" type="email" placeholder="email@exemplu.ro"></div></div>
+        <label>Număr maxim de persoane</label><input id="guestMax" type="number" min="1" value="2">
+        <div class="actions"><button class="primary" id="addGuest">Adaugă invitatul</button></div>
+      </div>
+      <div class="card"><h2>Link, QR și WhatsApp</h2><div class="notice">Pentru confirmări reale de pe alte telefoane, publică aplicația pe host și conecteaz-o la o bază de date online.</div><div id="selectedGuestBox" class="small">Selectează un invitat din listă.</div><div id="qrArea" class="qrbox hidden"><canvas id="qrCanvas"></canvas></div></div>
+    </div>
+    <div class="card" style="margin-top:18px"><h2>Lista invitaților</h2><div style="overflow:auto"><table><thead><tr><th>Nume</th><th>Telefon</th><th>Max.</th><th>Status</th><th>Acțiuni</th></tr></thead><tbody id="guestRows"></tbody></table></div></div>
+  </section>
+
+  <section id="responses" class="panel">
+    <div class="statgrid"><div class="stat"><b id="sTotal">0</b><span>Total invitații</span></div><div class="stat"><b id="sYes">0</b><span>Participă</span></div><div class="stat"><b id="sNo">0</b><span>Nu participă</span></div><div class="stat"><b id="sPeople">0</b><span>Persoane confirmate</span></div></div>
+    <div class="card" style="margin-top:18px"><h2>Răspunsuri</h2><div style="overflow:auto"><table><thead><tr><th>Invitat</th><th>Răspuns</th><th>Persoane</th><th>Meniu</th><th>Mesaj</th></tr></thead><tbody id="responseRows"></tbody></table></div></div>
+  </section>
+
+  <section id="settings" class="panel"><div class="card"><h2>Conectare pentru confirmări reale online</h2><p>Aplicația este pregătită pentru un backend online. Poți păstra aici datele Supabase, iar apoi integrarea poate fi activată pentru ca răspunsurile să fie vizibile de pe orice dispozitiv.</p><label>Supabase Project URL</label><input id="sbUrl" placeholder="https://xxxx.supabase.co"><label>Supabase anon/public key</label><textarea id="sbKey" placeholder="cheia publică anon"></textarea><div class="actions"><button class="primary" id="saveSettings">Salvează setările</button></div><p class="small">Folosește numai cheia publică/anon, niciodată cheia service-role.</p></div></section>
+</div>
+
+<div id="rsvp" class="rsvp-page hidden">
+  <div class="rsvp-hero">
+    <div id="rsvpInvite"></div>
+    <hr style="border:0;border-top:1px solid var(--line);margin:24px 0">
+    <h2>Confirmare participare</h2><div id="rsvpGuest" class="small"></div>
+    <div class="actions"><button class="btn ok" data-answer="yes">Particip</button><button class="btn no" data-answer="no">Nu pot participa</button></div>
+    <div id="rsvpForm" class="hidden"><label>Număr persoane</label><input id="rsvpCount" type="number" min="1" value="1"><label>Preferință meniu</label><select id="rsvpMenu"><option>Standard</option><option>Vegetarian</option><option>Copii</option></select><label>Mesaj pentru miri</label><textarea id="rsvpMsg" placeholder="Opțional"></textarea><div class="actions"><button class="primary" id="sendRsvp">Trimite confirmarea</button></div></div>
+    <div id="rsvpThanks" class="hidden notice" style="margin-top:18px"></div>
+  </div>
+</div>
+<script>
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set(k,v){localStorage.setItem(k,JSON.stringify(v))}};
+let invite=store.get('weddingInvite',{groom:'Robert',bride:'Andreea',date:'',time:'18:00',venue:'',address:'',mapUrl:'',groomParents:'',brideParents:'',godparents:'',church:'',churchTime:'16:00',churchAddress:'',message:'Cu mare bucurie vă invităm să ne fiți alături în cea mai frumoasă zi din viața noastră. Vă așteptăm să sărbătorim împreună iubirea, familia și un nou început.',deadline:'',theme:'romantic',photo:''});
+let guests=store.get('weddingGuests',[]);let selected=null;const $=id=>document.getElementById(id);
+function uid(){return Math.random().toString(36).slice(2,10)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function loadInvite(){for(const k of ['groom','bride','date','time','church','churchTime','churchAddress','venue','address','mapUrl','groomParents','brideParents','godparents','message','deadline','theme']) if($(k)) $(k).value=invite[k]||'';updatePreview()}
+function mapEmbed(url){if(!url)return ''; if(url.includes('/embed'))return url; const q=encodeURIComponent($('address').value||$('venue').value||''); return q?'https://www.google.com/maps?q='+q+'&output=embed':''}
+function updatePreview(){const g=$('groom').value||'Mire';const b=$('bride').value||'Mireasă';$('pMono').textContent=`${g[0]||'M'} ♥ ${b[0]||'M'}`;$('pNames').textContent=`${g} & ${b}`;const d=$('date').value;$('pDate').textContent=d?new Date(d+'T12:00:00').toLocaleDateString('ro-RO',{day:'2-digit',month:'long',year:'numeric'}).toUpperCase():'DATA NUNȚII';$('pMessage').textContent=$('message').value;const fam=[];if($('groomParents').value)fam.push('Părinții mirelui: '+$('groomParents').value);if($('brideParents').value)fam.push('Părinții miresei: '+$('brideParents').value);if($('godparents').value)fam.push('Nașii: '+$('godparents').value);$('pFamily').innerHTML=fam.map(esc).join('<br>');const church=[$('church').value,$('churchAddress').value,$('churchTime').value&&('ora '+$('churchTime').value)].filter(Boolean).join(' • ');const party=[$('venue').value,$('address').value,$('time').value&&('ora '+$('time').value)].filter(Boolean).join(' • ');$('pVenue').innerHTML=[church&&('⛪ Cununia religioasă: '+esc(church)),party&&('🥂 Petrecerea: '+esc(party))].filter(Boolean).join('<br>');$('pDeadline').textContent=$('deadline').value?'Vă rugăm să confirmați până la '+new Date($('deadline').value+'T12:00:00').toLocaleDateString('ro-RO'):'';const theme=$('theme').value;$('preview').className='preview '+theme;if(invite.photo){$('pPhoto').src=invite.photo;$('pPhoto').style.display='block'}else{$('pPhoto').style.display='none'}const m=$('mapUrl').value;$('mapFrame').src=mapEmbed(m);$('openMap').href=m||('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent($('address').value||$('venue').value||''))}
+['groom','bride','date','time','church','churchTime','churchAddress','venue','address','mapUrl','groomParents','brideParents','godparents','message','deadline','theme'].forEach(k=>$(k).addEventListener('input',updatePreview));
+$('photo').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{invite.photo=r.result;$('pPhoto').src=r.result;$('pPhoto').style.display='block';store.set('weddingInvite',invite)};r.readAsDataURL(f)});
+$('saveInvite').onclick=()=>{const photo=invite.photo||'';invite={photo};['groom','bride','date','time','church','churchTime','churchAddress','venue','address','mapUrl','groomParents','brideParents','godparents','message','deadline','theme'].forEach(k=>invite[k]=$(k).value);store.set('weddingInvite',invite);alert('Invitația a fost salvată.')};$('printInvite').onclick=()=>window.print();
+function renderGuests(){const body=$('guestRows');body.innerHTML='';guests.forEach(g=>{const tr=document.createElement('tr');const status=g.rsvp?.answer==='yes'?'<span class="pill ok">Participă</span>':g.rsvp?.answer==='no'?'<span class="pill no">Nu participă</span>':'<span class="pill wait">Așteaptă</span>';tr.innerHTML=`<td>${esc(g.name)}</td><td>${esc(g.phone)}</td><td>${g.max}</td><td>${status}</td><td><button class="btn" data-link="${g.id}">Link/QR</button> <button class="btn secondary" data-del="${g.id}">Șterge</button></td>`;body.appendChild(tr)});body.querySelectorAll('[data-link]').forEach(b=>b.onclick=()=>showLink(b.dataset.link));body.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{guests=guests.filter(g=>g.id!==b.dataset.del);store.set('weddingGuests',guests);renderGuests();renderResponses()})}
+$('addGuest').onclick=()=>{const name=$('guestName').value.trim();if(!name)return alert('Scrie numele invitatului.');guests.push({id:uid(),name,phone:$('guestPhone').value.trim(),email:$('guestEmail').value.trim(),max:+$('guestMax').value||1,rsvp:null});store.set('weddingGuests',guests);$('guestName').value='';$('guestPhone').value='';$('guestEmail').value='';renderGuests();renderResponses()};
+function getGuestUrl(id){return location.href.split('#')[0].split('?')[0]+'?rsvp='+id}
+function showLink(id){selected=guests.find(g=>g.id===id);const url=getGuestUrl(id);const text=`Bună, ${selected.name}! ${invite.groom} și ${invite.bride} te invită cu drag la nunta lor. Confirmă participarea aici: ${url}`;const wa='https://wa.me/'+String(selected.phone||'').replace(/\D/g,'')+'?text='+encodeURIComponent(text);$('selectedGuestBox').innerHTML=`<b>${esc(selected.name)}</b><div class="linkbox" style="margin-top:8px"><input id="guestLink" value="${esc(url)}" readonly><button class="btn" id="copyLink">Copiază</button></div><div class="actions"><a class="btn whatsapp" target="_blank" rel="noopener" href="${wa}">Trimite pe WhatsApp</a></div>`;$('qrArea').classList.remove('hidden');if(window.QRCode)QRCode.toCanvas($('qrCanvas'),url,{width:180,margin:1},()=>{});setTimeout(()=>{$('copyLink').onclick=async()=>{await navigator.clipboard.writeText(url);alert('Link copiat.')}},0)}
+function renderResponses(){let y=0,n=0,p=0;$('responseRows').innerHTML='';guests.forEach(g=>{if(g.rsvp?.answer==='yes'){y++;p+=+g.rsvp.count||0}else if(g.rsvp?.answer==='no')n++;const tr=document.createElement('tr');tr.innerHTML=`<td>${esc(g.name)}</td><td>${g.rsvp?.answer==='yes'?'Participă':g.rsvp?.answer==='no'?'Nu participă':'—'}</td><td>${g.rsvp?.count||'—'}</td><td>${esc(g.rsvp?.menu||'—')}</td><td>${esc(g.rsvp?.msg||'—')}</td>`;$('responseRows').appendChild(tr)});$('sTotal').textContent=guests.length;$('sYes').textContent=y;$('sNo').textContent=n;$('sPeople').textContent=p}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));t.classList.add('active');$(t.dataset.tab).classList.add('active')});
+$('saveSettings').onclick=()=>{store.set('weddingSettings',{url:$('sbUrl').value.trim(),key:$('sbKey').value.trim()});alert('Setările au fost salvate local.')};const settings=store.get('weddingSettings',{});$('sbUrl').value=settings.url||'';$('sbKey').value=settings.key||'';
+function showRsvp(id){const g=guests.find(x=>x.id===id);$('app').classList.add('hidden');$('rsvp').classList.remove('hidden');const photo=invite.photo?`<img src="${invite.photo}" style="width:130px;height:130px;object-fit:cover;border-radius:50%;margin-bottom:12px">`:'';const fam=[invite.groomParents&&('Părinții mirelui: '+invite.groomParents),invite.brideParents&&('Părinții miresei: '+invite.brideParents),invite.godparents&&('Nașii: '+invite.godparents)].filter(Boolean).map(esc).join('<br>');$('rsvpInvite').innerHTML=`<div style="text-align:center">${photo}<div class="monogram">${esc(invite.groom?.[0]||'M')} ♥ ${esc(invite.bride?.[0]||'M')}</div><div class="names">${esc(invite.groom)} & ${esc(invite.bride)}</div><div class="date">${invite.date?new Date(invite.date+'T12:00:00').toLocaleDateString('ro-RO',{day:'2-digit',month:'long',year:'numeric'}):''}</div><p class="message">${esc(invite.message)}</p><div class="family">${fam}</div><div class="venue">${invite.church?`⛪ Cununia religioasă: ${esc(invite.church)} ${invite.churchAddress?'• '+esc(invite.churchAddress):''} ${invite.churchTime?'• ora '+esc(invite.churchTime):''}<br>`:''}🥂 ${esc(invite.venue)} ${invite.time?'• ora '+esc(invite.time):''}</div>${invite.mapUrl?`<div class="actions" style="justify-content:center"><a class="btn secondary" target="_blank" rel="noopener" href="${esc(invite.mapUrl)}">Vezi locația</a></div>`:''}</div>`;if(!g){$('rsvpGuest').innerHTML='<span class="danger">Link invalid sau invitat inexistent.</span>';document.querySelectorAll('[data-answer]').forEach(x=>x.disabled=true);return}$('rsvpGuest').textContent='Invitație pentru: '+g.name;$('rsvpCount').max=g.max;$('rsvpCount').value=1;document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{const answer=b.dataset.answer;if(answer==='no'){g.rsvp={answer:'no',count:0,menu:'',msg:''};store.set('weddingGuests',guests);$('rsvpForm').classList.add('hidden');$('rsvpThanks').textContent='Mulțumim pentru răspuns. Ne pare rău că nu puteți participa.';$('rsvpThanks').classList.remove('hidden')}else{$('rsvpForm').classList.remove('hidden')}});$('sendRsvp').onclick=()=>{g.rsvp={answer:'yes',count:Math.min(+$('rsvpCount').value||1,g.max),menu:$('rsvpMenu').value,msg:$('rsvpMsg').value.trim()};store.set('weddingGuests',guests);$('rsvpThanks').textContent='Confirmarea a fost trimisă. Vă mulțumim și vă așteptăm cu drag!';$('rsvpThanks').classList.remove('hidden');$('rsvpForm').classList.add('hidden')}}
+loadInvite();renderGuests();renderResponses();const rid=new URLSearchParams(location.search).get('rsvp');if(rid)showRsvp(rid);
+</script>
+</body></html>
